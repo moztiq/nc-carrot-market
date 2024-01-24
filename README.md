@@ -20,5 +20,7 @@ pscale auth login
 pscale region list
 pscale database create nc-carrot-market --region gcp-asia-northeast3
 pscale connect nc-carrot-market
+
+npx prisma db push
 ```
 
