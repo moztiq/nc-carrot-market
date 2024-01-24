@@ -4,7 +4,21 @@ Serverless Carrot Market Clone using NextJS, Tailwind, Prisma, PlanetScale and C
 
 ## Prisma Setup
 
-```
+```shell
 npm i -D prisma
 npx prisma init
 ```
+
+## PlanetScale Setup
+
+```shell
+brew install planetscale/tap/pscale
+brew install mysql-client # optional
+brew upgrade pscale # upgrade to latest version
+
+pscale auth login
+pscale region list
+pscale database create nc-carrot-market --region gcp-asia-northeast3
+pscale connect nc-carrot-market
+```
+
