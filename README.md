@@ -20,7 +20,14 @@ pscale auth login
 pscale region list
 pscale database create nc-carrot-market --region gcp-asia-northeast3
 pscale connect nc-carrot-market
-
-npx prisma db push
 ```
 
+## Prisma & PlanetScale
+
+```shell
+# after making models
+npx prisma db push
+npx prisma studio
+npm i @prisma/client # not dev dependency
+npx prisma generate 
+```
