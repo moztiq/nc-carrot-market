@@ -2,11 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import withHandler, { ResponseType } from '@libs/server/withHandler';
 import client from '@libs/server/client';
 import twilio from 'twilio';
-import * as process from 'process';
+import mail from '@sendgrid/mail';
 
 const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+mail.setApiKey(process.env.SENDGRID_API_KEY!);
 
-// const
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
@@ -38,6 +38,15 @@ async function handler(
       body: `Your login token is ${payload}`,
     });
     console.log('message', message);
+  } else if (email) {
+    const email = await mail.send({
+      from: 'hello@moztiq.com',
+      to: 'moztiq@gmail.com',
+      subject: 'Your Carrot Market Verification Email',
+      text: `Your login token is ${payload}`,
+      html: `<strong>Your login token is ${payload}</strong>`,
+    });
+    console.log('email', email);
   }
   return res.json({
     ok: true,
